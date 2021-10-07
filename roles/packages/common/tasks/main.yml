@@ -27,3 +27,4 @@
   become: true
   package:
     pkg: "{{ packages_extra | join(',') }}"
+  when: packages_extra
