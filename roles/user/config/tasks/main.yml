@@ -1,0 +1,136 @@
+---
+
+- name: change home permissions for {{ username }}
+  become: yes
+  become_user: "{{ username }}"
+  file:
+    path: "~/"
+    state: directory
+    mode: 0750
+  tags: user
+
+- name: create directory for ansible remote_tmp to skip warning
+  become: yes
+  become_user: "{{ username }}"
+  file:
+    path: "~/.ansible/tmp"
+    state: directory
+    mode: 0750
+  tags: user
+
+- name: add authorized ssh keys for {{ username }}
+  become: true
+  become_user: "{{ username }}"
+  authorized_key:
+    key: https://github.com/{{ github_username }}.keys
+    comment: "github user key for {{ github_username }}"
+    state: present
+    user: "{{ username }}"
+  when: private_node
+  tags: user
+
+- name: add authorized ssh keys for {{ username }} in jumpcloud file
+  become: true
+  become_user: "{{ username }}"
+  authorized_key:
+    path: "~/.ssh/authorized_keys.jcorig"
+    key: https://github.com/{{ github_username }}.keys
+    comment: "github user key for {{ github_username }}"
+    state: present
+    user: "{{ username }}"
+  when: not private_node
+  tags: user
+
+- name: create directories
+  become: yes
+  become_user: "{{ username }}"
+  file:
+    path: "{{ item.path }}"
+    state: directory
+    mode: "{{ item.mode|default('') }}"
+  loop:
+    - path: "~/.config"
+    - path: "~/Private"
+#    - path: "{{ packages_directory }}"
+    - path: "~/.ssh"
+      mode: "0700"
+#    - path: "~/.ssh/socket"
+#      mode: "0700"
+    - path: "{{ code_directory }}"
+    - path: "~/bin"
+  tags: user
+
+- name: touch .gitconfig_ids
+  become: yes
+  become_user: "{{ username }}"
+  file:
+    path: "~/.gitconfig_ids"
+    state: touch
+    mode: "0644"
+  tags: user
+
+- name: install config dot files
+  become: yes
+  become_user: "{{ username }}"
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: "{{ item.mode | default('0644')}}"
+  loop:
+    - src: curlrc.j2
+      dest: "~/.curlrc"
+    - src: gitconfig.j2
+      dest: "~/.gitconfig"
+    - src: gitignore_global.j2
+      dest: "~/.gitignore_global"
+    - src: vimrc.j2
+      dest: "~/.vimrc"
+    - src: wgetrc.j2
+      dest: "~/.wgetrc"
+#    - src: ssh_config.j2
+#      dest: "~ /.ssh/config"
+#    - src: gist.j2
+#      dest: "~/.config/.gist"
+#    - src: tmux.conf.j2
+#      dest: "~/.tmux.conf"
+  tags: user
+
+#- include_tasks: gpg.yml
+
+#- name: install config dot files on work node
+#  become: yes
+#  become_user: "{{ username }}"
+#  template:
+#    src: "{{ item.src }}"
+#    dest: "{{ item.dest }}"
+#    mode: "{{ item.mode | default('0644')}}"
+#  when: not private_node
+#  loop:
+#    - src: aws_config.j2
+#      dest: "~/.aws/config"
+
+#- name: clone projects
+#  become: yes
+#  become_user: "{{ username }}"
+#  git:
+#    clone: yes
+#    accept_hostkey: yes
+#    dest: "{{ item.dest }}"
+#    repo: "{{ item.url }}"
+#    update: no
+#    verify_commit: no
+#  loop: "{{ code_projects }}"
+#  tags: user
+#  ignore_errors: yes
+#
+#- name: install custom scripts
+#  become: true
+#  copy:
+#    dest: "/usr/local/bin/{{ company }}chat"
+#    mode: 0755
+#    owner: root
+#    group: root
+#    content: |
+#      #!/bin/sh -e
+#      /snap/bin/chromium --profile-directory=Default --app-id=chfbpgnooceecdoohagngmjnndbbaeip
+#  when: not private_node

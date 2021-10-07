@@ -30,8 +30,8 @@
 #    - role: packages/sshd
 #      tags: ssh
 
-#    - role: user/setup
-#      tags: user
+    - role: user/setup
+      tags: user
 
     - role: packages/sudo
       tags: sudo
@@ -84,11 +84,11 @@
     - role: packages/signal
       tags: signal
 
-#    - role: user/config
-#      tags: user, config
-#
-#    - role: user/zsh
-#      tags: user, zsh
+    - role: user/config
+      tags: user, config
+
+    - role: user/zsh
+      tags: user, zsh
 
   tags:
     - packages
