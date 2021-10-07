@@ -1,35 +1,13 @@
 ---
-bluetooth:
-  Policy:
-    AutoEnable: false
-
-code_directory: "~/code"
-code_projects: "{{ vault_code_projects }}"
-
-git: "{{ vault_git | combine(vault_git_work) }}"
-
-gpg: "{{ vault_gpg }}"
-
-kdrive:
-  version: "3.1.2.20210331"
-
-lunii:
-  version: "2.2.271"
-
 locales:
-  - fr_CH.UTF-8
   - en_US.UTF-8
-  - en_CA.UTF-8
-
-packages_directory: "~/soft"
+  - en_UK.UTF-8
+  - fr_CH.UTF-8
 
 python_tools:
-  - name: cs
   - name: flake8
     extra: flake8-import-order flake8-bugbear
   - name: pip-tools
-  - name: pre-commit
-  - name: sphinx
-    extra: sphinx-rtd-theme recommonmark
   - name: black
-  - name: sslyze
+
+packages_extra:

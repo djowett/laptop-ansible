@@ -13,7 +13,7 @@
 - name: add authorized ssh keys for root
   become: yes
   authorized_key:
-    key: https://github.com/marcaurele.keys
-    comment: "github user key for marcaurele"
+    key: https://github.com/djowett.keys
+    comment: "github user key for djowett"
     state: present
     user: root

@@ -11,26 +11,9 @@ apt_releases:
     mirror: http://ch.archive.ubuntu.com/ubuntu
     archive: main restricted universe multiverse
 
-aws_config : "{{ vault_aws_config }}"
-
-certificates_extra: "{{ vault_certificates_extra }}"
-
-company: "{{ vault_company }}"
-
-grub_parameter: "mem_sleep_default=deep"
-
 nodejs:
   version: 14.x
 
-packages_extra:
-  - awscli
-
 private_node: false
 
-sudo:
-  - /bin/systemctl hibernate
-  - /usr/sbin/reboot
-  - /usr/sbin/shutdown
-  - /usr/sbin/halt
-
-username: mbrothie
+username: djowett

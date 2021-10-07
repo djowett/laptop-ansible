@@ -5,49 +5,23 @@
   package:
     pkg: "{{ item }}"
   with_together:
-    - ack
     - apt-transport-https
-    - byobu
     - cups
     - cups-client
     - curl
     - dnsutils
     - git
-    - git-lfs
     - gpg
     - gpg-agent
-    - hcloud-cli
     - htop
-    - iftop
-    - inputplug
-    - ipcalc
-    - keychain
     - man
-    - mtr
-    - neovim
-    - net-tools
-    - ocrmypdf
-    - tesseract-ocr-fra
-    - oathtool
     - openssh-client
     - openssh-server
     - openssl
     - pass
-    - pass-extension-otp
-    - pigz
-    - pssh
-    - pwgen
-    - qpdf
-    - qrencode
-    - scdaemon
     - sudo
-    - tmate
     - wget
     - whois
-    - xz-utils
-    - yubikey-manager
-    - yubikey-personalization
-    - zbar-tools
 
 - name: install extra packages
   become: true

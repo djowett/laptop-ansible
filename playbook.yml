@@ -13,27 +13,25 @@
 - name: Configure system
   hosts: [all]
   roles:
-    - role: locales
-      tags: locales
-
     - role: packages/apt
       tags: apt
       when: ansible_os_family == "Debian"
 
-    - role: common/configuration
-      tags: configuration
+#    - role: common/configuration
+#      tags: configuration
 
     - role: common/upgrade
       tags: upgrade, never
 
-    - role: common/hardware
-      tags: hardware, system
+#    - role: common/hardware
+#      tags: hardware, system
 
-    - role: packages/sshd
-      tags: ssh
+# Not yet
+#    - role: packages/sshd
+#      tags: ssh
 
-    - role: user/setup
-      tags: user
+#    - role: user/setup
+#      tags: user
 
     - role: packages/sudo
       tags: sudo
@@ -41,36 +39,17 @@
     - role: packages/common
       tags: common
 
-    - role: packages/desktop
-      tags: desktop
-
     - role: packages/hashicorp
       tags: hashicorp
-
-    - role: packages/tfenv
-      tags: tfenv
 
     - role: packages/python
       tags: python
 
-    - role: packages/pyenv
-      tags: pyenv
-
     - role: packages/pipx
       tags: pipx
 
-    - role: packages/pulumi
-      tags: pulumi
-
-    - role: packages/virtualization
-      tags: virtualization
-
-    - role: packages/gcloud
-      tags: gcloud
-
-    #- role: packages/helm
-    #  tags: helm, k8s
-    #  when: not private_node
+#    - role: packages/virtualization
+#      tags: virtualization
 
     - role: packages/development/toolbox
       tags: dev, toolbox
@@ -92,24 +71,12 @@
       tags: dev, javascript, yarn
       when: not private_node
 
-    - role: work
-      tags: work
-      when: not private_node
-
-    #- role: packages/minikube
-    #  tags: minikube
+#    - role: work
+#      tags: work
+#      when: not private_node
 
     - role: packages/firefox
       tags: firefox
-
-    #- role: packages/dropbox
-    #  tags: dropbox
-
-    #- role: packages/sublime
-    #  tags: sublime
-
-    - role: packages/dbeaver
-      tags: dbeaver
 
     - role: packages/drawio
       tags: drawio
@@ -117,44 +84,11 @@
     - role: packages/signal
       tags: signal
 
-    - role: packages/brave
-      tags: brave
-
-    #- role: packages/audible
-    #  tags: audible
-    #  when: private_node
-
-    - role: user/config
-      tags: user, config
-
-    - role: user/zsh
-      tags: user, zsh
-
-    #- role: packages/intellij
-    #  tags: intellij
-
-    #- role: packages/joplin
-    #  tags: joplin
-
-    - role: packages/kdrive
-      tags: kdrive, never
-      when: private_node
-
-    - role: packages/lunii
-      tags: lunii
-      when: private_node
-
-    - role: packages/calibre
-      tags: calibre
-      when: private_node
-
-    #- role: packages/mattermost-desktop
-    #  tags: mattermost
-    #  when: not private_node
-
-    - role: packages/awsvault
-      tags: awsvault
-      when: not private_node
+#    - role: user/config
+#      tags: user, config
+#
+#    - role: user/zsh
+#      tags: user, zsh
 
   tags:
     - packages
