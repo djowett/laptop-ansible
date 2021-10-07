@@ -11,6 +11,7 @@
     - curl
     - dnsutils
     - git
+    - git-lfs
     - gpg
     - gpg-agent
     - htop
@@ -18,8 +19,9 @@
     - openssh-client
     - openssh-server
     - openssl
-    - pass
+    - silversearcher-ag
     - sudo
+    - vim
     - wget
     - whois
 
