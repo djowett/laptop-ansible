@@ -1,0 +1,4 @@
+---
+collections:
+# The community.general collection adds installation of snaps - which we use to install Pycharm
+  - name: community.general

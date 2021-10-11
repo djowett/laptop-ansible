@@ -1,0 +1,8 @@
+---
+
+- name: Install Pycharm
+  become: yes
+  community.general.snap:
+    name:
+      - pycharm-professional
+    classic: yes

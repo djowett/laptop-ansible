@@ -54,6 +54,10 @@
     - role: packages/development/toolbox
       tags: dev, toolbox
 
+    # Pycharm
+    - role: packages/development/jetbrains
+      tags: dev
+
     - role: packages/gh
       tags: gh
 
