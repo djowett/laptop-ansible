@@ -19,3 +19,5 @@ private_node: false
 username: djowett
 
 github_username: djowett
+
+device_mapper_path: /dev/mapper/vgubuntu-swap

@@ -26,6 +26,9 @@
 #    - role: common/hardware
 #      tags: hardware, system
 
+    - role: common/hibernate
+      tags: hibernate
+
 # Not yet
 #    - role: packages/sshd
 #      tags: ssh
