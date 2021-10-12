@@ -6,6 +6,7 @@
     pkg: "{{ item }}"
   with_together:
     - apt-transport-https
+    - chromium-browser
     - cups
     - cups-client
     - curl
