@@ -1,0 +1,25 @@
+---
+
+- name: check home directory for GPG setup
+  stat:
+    path: "/home/{{ username }}/.gnupg"
+  register: gpg_dir
+  tags: system
+
+- name: remind that GPG needs setting up
+  pause:
+    prompt: "Please remember to setup GPG. Yes?"
+  when: not gpg_dir.stat.exists
+  tags: system
+
+- name: check password store for pass setup
+  stat:
+    path: "/home/{{ username }}/.password-store"
+  register: password_store
+  tags: system
+
+- name: remind that pass password store needs setting up
+  pause:
+    prompt: "Please remember to setup pass's password store with pass init. Yes?"
+  when: not password_store.stat.exists
+  tags: system

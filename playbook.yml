@@ -94,5 +94,8 @@
     - role: user/zsh
       tags: user, zsh
 
+    - role: user/finalchecks
+      tags: user
+
   tags:
     - packages

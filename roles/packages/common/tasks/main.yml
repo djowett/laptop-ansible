@@ -19,6 +19,8 @@
     - openssh-client
     - openssh-server
     - openssl
+    - pass
+    - pass-extension-otp
     - silversearcher-ag
     - sudo
     - vim
