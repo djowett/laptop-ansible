@@ -82,6 +82,10 @@
 #      tags: work
 #      when: not private_node
 
+    - role: packages/awsvault
+      tags: awsvault
+      when: not private_node
+
     - role: packages/firefox
       tags: firefox
 
