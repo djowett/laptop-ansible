@@ -11,7 +11,7 @@
 - name: check grub setting for hibernation
   lineinfile:
     path: /etc/default/grub
-    regexp: '^GRUB_CMDLINE_LINUX_DEFAULT=".*resume={{ device_mapper_path }}'
+    regexp: '^GRUB_CMDLINE_LINUX_DEFAULT=".*mem_sleep_default=deep resume={{ device_mapper_path }}'
     state: absent
   check_mode: true
   register: grub_cmdline_check
@@ -25,7 +25,7 @@
     backrefs: true
     path: /etc/default/grub
     regexp: '^(GRUB_CMDLINE_LINUX_DEFAULT=".*)"$'
-    line: '\1 resume={{ device_mapper_path }}"'
+    line: '\1 mem_sleep_default=deep resume={{ device_mapper_path }}"'
   when: device_mapper_path is defined and grub_cmdline_check.found == 0
   notify: update grub
   tags: system, root, hibernate
