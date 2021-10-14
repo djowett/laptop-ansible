@@ -1,0 +1,9 @@
+---
+
+# This could also be installed from pypi (for a more upto date version), but
+# choosing to do it this way as Ubuntu should maintain it from a security standpoint
+- name: install AWS tools
+  become: yes
+  apt:
+    pkg:
+      - awscli
