@@ -11,6 +11,7 @@
     - git
     - gpg
     - gpg-agent
+    - jq
     - libbz2-dev
     - libreadline-dev
     - libsqlite3-dev
