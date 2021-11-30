@@ -58,6 +58,7 @@
 #      mode: "0700"
     - path: "{{ code_directory }}"
     - path: "~/bin"
+    - path: "~/tools/bin"
   tags: user
 
 - name: touch .gitconfig_ids

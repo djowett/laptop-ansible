@@ -15,3 +15,21 @@
     append: yes
     groups:
       - docker
+
+- name: Download a docker-credential helper for pass
+  ansible.builtin.unarchive:
+    src: https://github.com/docker/docker-credential-helpers/releases/download/v0.6.4/docker-credential-pass-v0.6.4-amd64.tar.gz
+    dest: "~/tools/bin/"
+    remote_src: yes
+    mode: 0700
+
+# Not bulletproof - it won't create valid json if the file is either empty or merely `{}`
+- name: tell docker to use pass as a credentials store
+  lineinfile:
+    path: ~/.docker/config.json
+    state: present
+    regexp: 'credsStore'
+    line:  '        "credsStore": "pass",'
+    insertafter: '^\{'
+    firstmatch: yes
+    mode: 0600

@@ -39,6 +39,9 @@
     - role: user/setup
       tags: user
 
+    - role: user/config
+      tags: user, config
+
     - role: packages/sudo
       tags: sudo
 
@@ -103,9 +106,6 @@
 
     - role: packages/signal
       tags: signal
-
-    - role: user/config
-      tags: user, config
 
     - role: user/zsh
       tags: user, zsh
