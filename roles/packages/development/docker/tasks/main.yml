@@ -7,6 +7,7 @@
   with_together:
     - docker.io
     - docker-compose
+    - golang
 
 - name: add {{ username }} to docker group
   become: yes
@@ -15,3 +16,18 @@
     append: yes
     groups:
       - docker
+
+- name: clone docker-credentials-helpers
+  git:
+    clone: yes
+#    accept_hostkey: yes
+    dest: "~/tools/docker-credential-helpers"
+    repo: "https://github.com/docker/docker-credential-helpers"
+#    verify_commit: no
+    version: "v0.6.4"
+#  ignore_errors: yes
+
+- name: Build credentials helper for pass
+  community.general.make:
+    chdir: "~/tools/docker-credential-helpers"
+    target: pass
