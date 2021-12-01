@@ -19,6 +19,7 @@
     state: absent
   with_together:
     - docker.io
+    - docker-compose
 
 - name: install docker packages
   become: yes
@@ -28,7 +29,10 @@
     - docker-ce
     - docker-ce-cli
     - containerd.io
-    - docker-compose
+
+- name: install docker-compose with pipx to get more recent version
+  become: false
+  command: "~/.local/bin/pipx install docker-compose"
 
 - name: add {{ username }} to docker group
   become: yes
