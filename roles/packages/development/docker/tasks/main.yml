@@ -55,7 +55,7 @@
     path: ~/.docker/config.json
     state: present
     regexp: 'credsStore'
-    line:  '        "credsStore": "pass",'
-    insertafter: '^\{'
+    line:  '        "credsStore": "pass"'
+    insertbefore: '^\}$'
     firstmatch: yes
     mode: 0600
