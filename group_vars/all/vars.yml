@@ -11,5 +11,6 @@ python_tools:
     extra: flake8-import-order flake8-bugbear
   - name: pip-tools
   - name: black
+  - name: pylint
 
 packages_extra:
