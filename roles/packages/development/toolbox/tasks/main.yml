@@ -9,7 +9,6 @@
     - build-essential
     - cmake
     - git
-    - golang
     - gpg
     - gpg-agent
     - jq
