@@ -19,14 +19,15 @@ function gbold () {
 # The rest of my fun git aliases
 alias g='git'
 alias gd='git diff'
+alias gdst='git diff --stat'
 alias gs='git status -sb' # upgrade your git if -sb breaks for you. it's fun.
 alias gdc="git diff --cached"
 alias gdm="git diff master"
 alias gdms="git diff master --stat"
 alias gds="git diff staging"
 alias gdss="git diff staging --stat"
-alias gbav="git branch -avv --sort=committerdate"
-alias gblv="git branch -lvv --sort=committerdate"
+alias gbav="git branch -avv --sort=committerdate | grep -Ev 'OLD|DONE'"
+alias gblv="git branch -lvv --sort=committerdate | grep -Ev 'OLD|DONE'"
 alias mybr="git branch -l | grep dj"
 alias gf="git fetch"
 alias gco="git checkout"
