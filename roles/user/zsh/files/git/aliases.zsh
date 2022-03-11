@@ -16,6 +16,10 @@ function gbold () {
   # git branch -m ${1} OLD/${1##dj/}
 }
 
+function gbrev () {
+  git branch -m ${1} REVIEWED/${1}
+}
+
 # The rest of my fun git aliases
 alias g='git'
 alias gd='git diff'
@@ -26,8 +30,8 @@ alias gdm="git diff master"
 alias gdms="git diff master --stat"
 alias gds="git diff staging"
 alias gdss="git diff staging --stat"
-alias gbav="git branch -avv --sort=committerdate | grep -Ev 'OLD|DONE'"
-alias gblv="git branch -lvv --sort=committerdate | grep -Ev 'OLD|DONE'"
+alias gbav="git branch -avv --sort=committerdate | grep -Ev 'OLD|DONE|REVIEWED'"
+alias gblv="git branch -lvv --sort=committerdate | grep -Ev 'OLD|DONE|REVIEWED'"
 alias mybr="git branch -l | grep dj"
 alias gf="git fetch"
 alias gco="git checkout"
