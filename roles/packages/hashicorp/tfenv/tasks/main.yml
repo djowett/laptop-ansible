@@ -23,7 +23,7 @@
   become: true
   become_user: "{{ username }}"
   ansible.builtin.file:
-    path: ".zsh_config/hashicorp"
+    path: "~/.zsh_config/hashicorp"
     state: directory
 
 - name: tfenv configuration
@@ -31,4 +31,4 @@
   become_user: "{{ username }}"
   ansible.builtin.template:
     src: tfenv.zsh
-    dest: ".zsh_config/hashicorp/tfenv.zsh"
+    dest: "~/.zsh_config/hashicorp/tfenv.zsh"
