@@ -48,6 +48,9 @@
     - role: packages/common
       tags: common
 
+    - role: packages/desktop
+      tags: desktop
+
     - role: packages/hashicorp
       tags: hashicorp
 

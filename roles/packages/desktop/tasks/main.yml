@@ -1,0 +1,11 @@
+---
+
+- name: install desktop
+  become: yes
+  ansible.builtin.apt:
+    name:
+    - gimp
+    - inkscape
+    - libreoffice
+    - vlc
+
