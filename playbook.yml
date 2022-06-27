@@ -71,7 +71,10 @@
       tags: python
 
     - role: packages/pyenv
-      tags: pyenv
+      tags: pyenv, python
+
+    - role: packages/poetry
+      tags: poetry, python
 
     - role: packages/pipx
       tags: pipx
