@@ -4,11 +4,11 @@
   get_url:
     url: https://install.python-poetry.org/
     dest: /tmp/install-poetry.py
-    mode: 0440
+    mode: 0640
+  register: poetry_download
 
 - name: install poetry
   command: "/usr/bin/python3 /tmp/install-poetry.py"
-  args:
-    creates: "~/.local/bin/poetry"
   environment:
     POETRY_HOME: "~/.local/"
+  when: poetry_download.changed
