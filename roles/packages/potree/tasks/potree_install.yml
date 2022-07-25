@@ -1,0 +1,91 @@
+---
+- name: Ensure opt exists
+  file:
+    dest: "/opt"
+    state: directory
+    mode: 0777
+  become: yes
+
+- name: Initialize Potree deploy helper
+  deploy_helper:
+    path: "{{ potree_dir }}"
+    release: "{{ potree_version_tag }}"
+    releases_path: "{{ potree_releases }}"
+    current_path: "{{ potree_current }}"
+
+- name: Create install dir
+  file:
+    dest: "{{ deploy_helper.new_release_path }}"
+    state: directory
+    mode: 0777
+    recurse: true
+  become: yes
+
+- name: Add an unfinished file, to allow cleanup on successful finalize
+  file:
+    path: "{{ deploy_helper.new_release_path }}/{{ deploy_helper.unfinished_filename }}"
+    state: touch
+
+- name: Create lastools dir
+  file:
+    dest: "{{ deploy_helper.new_release_path }}/lastools"
+    state: directory
+    mode: 0777
+  become: yes
+
+- name: Download and unzip lastools
+  unarchive:
+    src: "{{ lastools_http_zip }}"
+    dest: "{{ deploy_helper.new_release_path }}/lastools"
+    creates: "{{ deploy_helper.new_release_path }}/{{ lastools_dir }}"
+    remote_src: yes
+
+- name: Create lastools build directory
+  file:
+    path: "{{ deploy_helper.new_release_path }}/{{ lastools_zip_build }}"
+    state: directory
+
+- name: Build lastools
+  command: "cmake {{ lastools_cmake_flags }} .."
+  args:
+    chdir: "{{ deploy_helper.new_release_path }}/{{ lastools_zip_build }}"
+
+- name: Make lastools
+  command: "make"
+  args:
+    chdir: "{{ deploy_helper.new_release_path }}/{{ lastools_zip_build }}"
+
+- name: Download and unzip potree
+  unarchive:
+    src: "{{ potree_http_zip }}"
+    dest: "{{ deploy_helper.new_release_path }}"
+    creates: "{{ deploy_helper.new_release_path }}/{{ potree_target }}"
+    remote_src: yes
+
+- name: Create potree build directory
+  file:
+    path: "{{ deploy_helper.new_release_path }}/{{ potree_build }}"
+    state: directory
+
+- name: Build potree
+  command: "cmake {{ potree_cmake_flags }} -DLASZIP_INCLUDE_DIRS={{ deploy_helper.new_release_path }}/{{ lastools_zip_build_dll }} -DLASZIP_LIBRARY={{ deploy_helper.new_release_path }}/{{ lastools_zip_build_so }} .."
+  args:
+    chdir: "{{ deploy_helper.new_release_path }}/{{ potree_build }}"
+
+- name: Make potree
+  command: "make"
+  args:
+    chdir: "{{ deploy_helper.new_release_path }}/{{ potree_build }}"
+  become: yes
+
+- name: Create internal symlink to top level
+  file:
+    src: "{{ deploy_helper.new_release_path }}/{{ potree_build_bin }}"
+    dest: "{{ deploy_helper.new_release_path }}/PotreeConverter"
+    state: link
+
+- name: Finalize the deploy, removing the unfinished file and switching the symlink
+  deploy_helper:
+    path: "{{ potree_dir }}"
+    release: "{{ deploy_helper.new_release }}"
+    state: finalize

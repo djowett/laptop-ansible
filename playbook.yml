@@ -129,6 +129,9 @@
     - role: user/zsh
       tags: user, zsh
 
+    - role: packages/potree
+      tags: pix4d_internal
+
     - role: user/finalchecks
       tags: user
 

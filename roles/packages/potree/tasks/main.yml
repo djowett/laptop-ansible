@@ -1,0 +1,9 @@
+---
+- name: Check if we require installing Potree
+  stat:
+    path: "{{ potree_dir }}/{{ potree_releases }}/{{ potree_version_tag }}/PotreeConverter"
+  register: potree_bin
+
+- import_tasks: potree_install.yml
+  tags: [potree_install]
+  when: potree_bin.stat.exists == False
