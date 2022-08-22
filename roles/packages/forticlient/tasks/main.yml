@@ -8,7 +8,7 @@
 - name: add repository for FortiClient (VPN)
   become: true
   apt_repository:
-    repo: deb [arch=amd64] https://repo.fortinet.com/repo/7.0/ubuntu/ xenial multiverse
+    repo: deb [arch=amd64] https://repo.fortinet.com/repo/7.0/ubuntu/ /bionic multiverse
 
 - name: install FortiClient (VPN)
   become: true
