@@ -126,6 +126,9 @@
     - role: packages/signal
       tags: signal
 
+    - role: packages/forticlient
+      tags: network
+
     - role: user/zsh
       tags: user, zsh
 
