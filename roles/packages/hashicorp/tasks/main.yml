@@ -33,6 +33,9 @@
       - terraform
   when: private_node
 
+- name: install autocomplete for terraform
+  command: "terraform -install-autocomplete"
+
 - name: deactivate nomad service
   ansible.builtin.systemd:
     name: nomad
