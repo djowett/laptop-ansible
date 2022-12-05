@@ -64,9 +64,6 @@
     - role: packages/hashicorp/hashienv
       tags: hashienv
 
-    - role: packages/hashicorp
-      tags: hashicorp
-
     - role: packages/python
       tags: python
 
