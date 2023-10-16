@@ -117,9 +117,6 @@
     - role: packages/firefox
       tags: firefox
 
-    - role: packages/typst
-      tags: typst
-
     - role: packages/drawio
       tags: drawio
 
