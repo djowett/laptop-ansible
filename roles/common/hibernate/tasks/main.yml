@@ -5,7 +5,7 @@
   apt:
     name:
       - pm-utils
-      - hibernate
+#      - hibernate
   tags: system, root, hibernate
 
 - name: check grub setting for hibernation
