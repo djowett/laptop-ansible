@@ -12,3 +12,10 @@
   ansible.builtin.template:
     src: env.zsh
     dest: "{{ config.zsh }}/go/env.zsh"
+
+- name: install/upgrade benchstat
+  become: true
+  become_user: "{{ username }}"
+  command: "go install golang.org/x/perf/cmd/benchstat"
+  environment:
+    GO111MODULE: "on"

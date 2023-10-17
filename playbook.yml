@@ -51,9 +51,6 @@
     - role: packages/desktop
       tags: desktop
 
-    - role: packages/go
-      tags: dev
-
     - role: packages/hashicorp
       tags: hashicorp
 
