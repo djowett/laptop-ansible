@@ -32,8 +32,9 @@
     pkg:
       - terraform
 
-- name: install autocomplete for terraform
-  command: "terraform -install-autocomplete"
+# TODO fix with https://github.com/macunha1/zsh-terraform
+#- name: install autocomplete for terraform
+#  command: "terraform -install-autocomplete"
 
 - name: deactivate nomad service
   ansible.builtin.systemd:
