@@ -31,7 +31,6 @@
   apt:
     pkg:
       - terraform
-  when: private_node
 
 - name: install autocomplete for terraform
   command: "terraform -install-autocomplete"
