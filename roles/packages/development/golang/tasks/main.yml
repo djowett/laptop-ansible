@@ -11,7 +11,7 @@
   become_user: "{{ username }}"
   ansible.builtin.template:
     src: env.zsh
-    dest: "{{ config.zsh }}/go/env.zsh"
+    dest: "~/.zsh_config/go/env.zsh"
 
 - name: install/upgrade benchstat
   become: true
