@@ -89,10 +89,10 @@
       dest: "~/.vimrc"
     - src: wgetrc.j2
       dest: "~/.wgetrc"
-    - src: ssh_config.j2
-      dest: "~ /.ssh/config"
-    - src: tmux.conf.j2
-      dest: "~/.tmux.conf"
+#    - src: ssh_config.j2
+#      dest: "~ /.ssh/config"
+#    - src: tmux.conf.j2
+#      dest: "~/.tmux.conf"
     - src: pypoetry.config.toml.j2
       dest: "~/.config/pypoetry/config.toml"
   tags: user
